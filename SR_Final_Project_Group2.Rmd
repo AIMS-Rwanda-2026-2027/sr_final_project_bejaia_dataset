@@ -1,0 +1,50 @@
+---
+title: "SR Final"
+author: "WDS"
+date: "2026-11-23"
+output: html_document
+---
+
+
+```{r}
+# Loading
+data <- read.csv(
+  "Bejaia_Algeria_Fire_Dataset_SR_Project.csv",
+  skip = 1,
+  strip.white = TRUE
+)
+```
+
+
+```{r}
+# Inspecting the dataset
+head(data)
+str(data)
+summary(data)
+colSums(is.na(data))
+```
+
+
+```{r}
+# Removing day and year
+data$day <- NULL
+data$year <- NULL
+```
+
+
+```{r}
+# Converting month to a categorical variable
+data$month <- factor(
+  data$month,
+  levels = c(6, 7, 8, 9),
+  labels = c("June", "July", "August", "September")
+)
+```
+
+
+```{r}
+# Checking the monthly observations
+table(data$month)
+
+```
+
